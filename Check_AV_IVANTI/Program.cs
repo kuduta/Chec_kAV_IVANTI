@@ -95,6 +95,9 @@ namespace Chec_kAV_IVANTI
             //{
             //    ServerAV = SrvAV + ".1.5";
             //}
+            try{
+
+           
             String MAC = ReadSubKeyValue(regtry_text, "MAC");
             String GUID = ReadSubKeyValue(regtry_text, "GUID");
             String InstallDate = ReadSubKeyValue(regtry_text, "InstDate");
@@ -102,8 +105,12 @@ namespace Chec_kAV_IVANTI
             String NtVer = ReadSubKeyValue(regtry_text, "NtVer");
             String server = ReadSubKeyValue(regtry_text, "Server");
 
-            
-            string[] ipvalues = ipaddress.Split('.');
+            String programversion = ReadSubKeyValue(regtry_text +"\\Misc.", "ProgramVer");
+
+            String productname = ReadSubKeyValue(regtry_text + "\\Misc.", "ProductName");
+           
+
+           
             //Console.WriteLine(Int32.Parse(ipvalues[0]));
             //Console.WriteLine(Int32.Parse(ipvalues[1]));
             //Console.WriteLine(Int32.Parse(ipvalues[2]));
@@ -118,6 +125,8 @@ namespace Chec_kAV_IVANTI
             Console.WriteLine("IP Address for search :  {0}", findip);
             //Console.WriteLine("Server For install  : {0}", ServerAV);
             Console.WriteLine("MAC Address : {0}",MAC );
+            Console.WriteLine("Product name : {0}", productname);
+           Console.WriteLine("Program Version : {0}", programversion);
             Console.WriteLine("GUID : {0}", GUID);
             Console.WriteLine("Install Date : {0}", InstallDate);
             Console.WriteLine("Domain : {0}", domain);
@@ -125,9 +134,14 @@ namespace Chec_kAV_IVANTI
             Console.WriteLine("Server : {0}", server);
             
             Console.WriteLine("Service Name is :{0} : service is {1}", AVstatus, GetWindowsServiceStatus(AVstatus));
-            Console.WriteLine("Service Name is :{0} : service is {1}", IVANTI, GetWindowsServiceStatus(IVANTI));
 
-            
+            Console.WriteLine("Service Name is :{0} : service is {1}", IVANTI, GetWindowsServiceStatus(IVANTI));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("This Computer don't install sofware!!!!!!!!!......" ;
+            }
+            string[] ipvalues = ipaddress.Split('.');
             string instserver = "";
             if (ipvalues[0] == "10")
             {
@@ -137,7 +151,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 34 && Int32.Parse(ipvalues[1]) <= 69) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";  //PAK1-3
+                    instserver = ipvalues[0] +"."+ipvalues[1] + ".1.5";  //PAK1-3
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 34 && Int32.Parse(ipvalues[1]) <= 69) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -145,7 +159,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 80 && Int32.Parse(ipvalues[1]) <= 95) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK4
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK4
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 80 && Int32.Parse(ipvalues[1]) <= 95) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -153,7 +167,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 96 && Int32.Parse(ipvalues[1]) <= 111) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK5
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK5
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 96 && Int32.Parse(ipvalues[1]) <= 111) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -161,7 +175,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 112 && Int32.Parse(ipvalues[1]) <= 127) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK6
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK6
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 112 && Int32.Parse(ipvalues[1]) <= 127) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -169,7 +183,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 128 && Int32.Parse(ipvalues[1]) <= 143) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK7
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK7
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 128 && Int32.Parse(ipvalues[1]) <= 143) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -177,7 +191,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 144 && Int32.Parse(ipvalues[1]) <= 159) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK8
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK8
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 144 && Int32.Parse(ipvalues[1]) <= 159) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -185,7 +199,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 160 && Int32.Parse(ipvalues[1]) <= 175) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK9
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK9
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 160 && Int32.Parse(ipvalues[1]) <= 175) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -193,7 +207,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 176 && Int32.Parse(ipvalues[1]) <= 191) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK10
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK10
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 176 && Int32.Parse(ipvalues[1]) <= 191) && (Int32.Parse(ipvalues[2]) >= 16))
                 {
@@ -201,7 +215,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 192 && Int32.Parse(ipvalues[1]) <= 207) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK11
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK11
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 192 && Int32.Parse(ipvalues[1]) <= 207) && (Int32.Parse(ipvalues[2]) > 16))
                 {
@@ -210,7 +224,7 @@ namespace Chec_kAV_IVANTI
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 208 && Int32.Parse(ipvalues[1]) <= 216) && (Int32.Parse(ipvalues[2]) < 16))
                 {
-                    instserver = ipvalues[0] + ipvalues[1] + ".1.5";    //PAK12
+                    instserver = ipvalues[0] + "." + ipvalues[1] + ".1.5";    //PAK12
                 }
                 else if ((Int32.Parse(ipvalues[1]) >= 208 && Int32.Parse(ipvalues[1]) <= 216) && (Int32.Parse(ipvalues[2]) > 16))
                 {
