@@ -75,6 +75,14 @@ namespace Chec_kAV_IVANTI
             String IVANTI = "EMSS Agent";
             String regtry_text = "";
             String ComName = Environment.MachineName.ToString();
+            String MAC = "";
+            String GUID = "";
+            String InstallDate = ""; ;
+            String domain = "";
+            String NtVer = "";
+            String server = "";
+            String programversion = "";
+             String productname=  "";
 
             if (Environment.Is64BitOperatingSystem)
             {
@@ -98,18 +106,32 @@ namespace Chec_kAV_IVANTI
             try{
 
            
-            String MAC = ReadSubKeyValue(regtry_text, "MAC");
-            String GUID = ReadSubKeyValue(regtry_text, "GUID");
-            String InstallDate = ReadSubKeyValue(regtry_text, "InstDate");
-            String domain = ReadSubKeyValue(regtry_text, "Domain");
-            String NtVer = ReadSubKeyValue(regtry_text, "NtVer");
-            String server = ReadSubKeyValue(regtry_text, "Server");
+            MAC = ReadSubKeyValue(regtry_text, "MAC");
+            GUID = ReadSubKeyValue(regtry_text, "GUID");
+            InstallDate = ReadSubKeyValue(regtry_text, "InstDate");
+            domain = ReadSubKeyValue(regtry_text, "Domain");
+            NtVer = ReadSubKeyValue(regtry_text, "NtVer");
+            server = ReadSubKeyValue(regtry_text, "Server");
 
-            String programversion = ReadSubKeyValue(regtry_text +"\\Misc.", "ProgramVer");
+            }
+            catch (Exception ex1)
+            {
+                Console.WriteLine("This Computer don't install sofware Trendmicro!!!!!!!!!......") ;
+            }
 
-            String productname = ReadSubKeyValue(regtry_text + "\\Misc.", "ProductName");
-           
+            try
+            {
 
+         
+            programversion = ReadSubKeyValue(regtry_text +"\\Misc.", "ProgramVer");
+
+            productname = ReadSubKeyValue(regtry_text + "\\Misc.", "ProductName");
+
+            }
+            catch
+            {
+                Console.WriteLine("This Computer don't install sofware Trendmicro!!!!!!!!!......");
+            }
            
             //Console.WriteLine(Int32.Parse(ipvalues[0]));
             //Console.WriteLine(Int32.Parse(ipvalues[1]));
@@ -136,11 +158,7 @@ namespace Chec_kAV_IVANTI
             Console.WriteLine("Service Name is :{0} : service is {1}", AVstatus, GetWindowsServiceStatus(AVstatus));
 
             Console.WriteLine("Service Name is :{0} : service is {1}", IVANTI, GetWindowsServiceStatus(IVANTI));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("This Computer don't install sofware!!!!!!!!!......" ;
-            }
+           
             string[] ipvalues = ipaddress.Split('.');
             string instserver = "";
             if (ipvalues[0] == "10")
